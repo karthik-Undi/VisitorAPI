@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisitorAPI", "VisitorAPI\VisitorAPI.csproj", "{B1887291-F947-4292-9E0B-08CE10C49D2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1887291-F947-4292-9E0B-08CE10C49D2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1887291-F947-4292-9E0B-08CE10C49D2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1887291-F947-4292-9E0B-08CE10C49D2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1887291-F947-4292-9E0B-08CE10C49D2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D98C33E2-B6AA-40EA-81AC-BD4BE5ACEB88}
+	EndGlobalSection
+EndGlobal
