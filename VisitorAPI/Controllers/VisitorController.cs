@@ -23,37 +23,50 @@ namespace VisitorAPI.Controllers
         [HttpGet]
         public IEnumerable<Visitors> GetAllVisitors()
         {
-            _log4net.Info("Get All Visitors was Called !!");
+            _log4net.Info("Get All Visitors Was Called !!");
             return _context.GetAllVisitors();
         }
         [HttpGet("{id}")]
         public IActionResult GetVisitorById(int id)
         {
-            _log4net.Info("Get Visitor By ID is Called !!");
+            _log4net.Info("Get Visitor By ID Was Called !!");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            var Visitor = _context.GetVisitorById(id);
-            _log4net.Info("Visitor of Id " + id + " is called");
-            if (Visitor == null)
+            try
             {
-                return NotFound();
+                var Visitor = _context.GetVisitorById(id);
+                _log4net.Info("Visitor Of Id " + id + " Was Called");
+                if (Visitor == null)
+                {
+                    return NotFound();
+                }
+                return Ok(Visitor);
             }
-            return Ok(Visitor);
+            catch(Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> PostVisitors(Visitors item)
         {
-            _log4net.Info("Post Visitors is called !!");
+            _log4net.Info("Post Visitors Was Called !!");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var addVisitor = await _context.PostVisitor(item);
-            return Ok(addVisitor);
+            try
+            {
+                var addVisitor = await _context.PostVisitor(item);
+                return Ok(addVisitor);
+            }
+            catch(Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost("{id}")]

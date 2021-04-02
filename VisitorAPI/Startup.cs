@@ -34,14 +34,14 @@ namespace VisitorAPI
        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Resident API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Visitor API", Version = "v1" });
             });
 
             services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -62,8 +62,9 @@ namespace VisitorAPI
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Visitor API V1");
             });
+            loggerFactory.AddLog4Net();
         }
     }
 }
