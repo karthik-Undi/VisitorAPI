@@ -23,9 +23,9 @@ namespace VisitorAPI.Repositories
         {
             return _context.Visitors.ToList();
         }
-        public Visitors GetVisitorById(int id)
+        public IEnumerable<Visitors> GetVisitorById(int id)
         {
-            Visitors item = _context.Visitors.Find(id);
+            var item = _context.Visitors.Where(vis => vis.ResidentId == id).ToList();
             return item;
         }
 
@@ -43,7 +43,7 @@ namespace VisitorAPI.Repositories
                     VisitStartTime = item.VisitStartTime,
                     VisitEndTime = item.VisitEndTime,
                     VisitorResaon = item.VisitorResaon,
-                    VisitorEntryStatus = item.VisitorEntryStatus,
+                    VisitorEntryStatus = "Scheduled",
                     ResidentId=item.ResidentId,
                     EmployeeId=item.EmployeeId    
                 };
@@ -55,7 +55,7 @@ namespace VisitorAPI.Repositories
 
        
 
-        public async Task<Visitors> UpdateVisitor(Visitors item, int id)
+        public async Task<Visitors> UpdateVisitor(int id,Visitors item)
         {
             Visitors visitor = await _context.Visitors.FindAsync(id);
             visitor.VisitEndTime = item.VisitEndTime;
@@ -66,5 +66,20 @@ namespace VisitorAPI.Repositories
             return visitor;
         }
 
-    }
+        public async Task<Visitors> DeleteVisitor(int id)
+        {
+            Visitors visitor = await _context.Visitors.FindAsync(id);
+            if (visitor == null)
+            {
+                throw new NullReferenceException();
+            }
+            else
+            {
+                _context.Visitors.Remove(visitor);
+                await _context.SaveChangesAsync();
+            }
+            return visitor;
+
+            }
+        }
 }

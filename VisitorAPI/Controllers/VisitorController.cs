@@ -56,6 +56,48 @@ namespace VisitorAPI.Controllers
             return Ok(addVisitor);
         }
 
+        [HttpPost("{id}")]
+        public async Task<IActionResult> UpdateVisitor(int id, Visitors item)
+        {
+            _log4net.Info("Update Visitors Was Called !!");
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var updateVisitor = await _context.UpdateVisitor(id,item);
+                _log4net.Info("Update Visitor By Id" + id + "Was Called !!");
+                return Ok(updateVisitor);
+            }
+            catch(Exception)
+            {
+                return BadRequest();
+            }
+
+        }
+
+        [HttpDelete("RemoveVisitor/{id}")]
+        public async Task<IActionResult> DeleteVisitor(int id)
+        {
+            _log4net.Info("Delete Visitors Was Called !!");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var deleteVisitor = await _context.DeleteVisitor(id);
+                _log4net.Info("Delete Visitor By Id" + id + "Was Called !!");
+                return Ok(deleteVisitor);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
+        }
+
 
     }
 }

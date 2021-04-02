@@ -11,7 +11,8 @@ namespace VisitorAPI.Repositories
         Task<Visitors> PostVisitor(Visitors item);
 
         IEnumerable<Visitors> GetAllVisitors();
-        Visitors GetVisitorById(int id);
-        Task<Visitors> UpdateVisitor(Visitors item, int id);
+        IEnumerable<Visitors> GetVisitorById(int id);
+        Task<Visitors> UpdateVisitor(int id, Visitors item);
+        Task<Visitors> DeleteVisitor(int id);
     }
 }
