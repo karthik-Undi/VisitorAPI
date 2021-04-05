@@ -29,7 +29,7 @@ namespace VisitorAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetVisitorById(int id)
         {
-            _log4net.Info("Get Visitor By ID Was Called !!");
+            _log4net.Info("Get Visitor By Resident ID Was Called !!");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -37,7 +37,7 @@ namespace VisitorAPI.Controllers
             try
             {
                 var Visitor = _context.GetVisitorById(id);
-                _log4net.Info("Visitor Of Id " + id + " Was Called");
+                _log4net.Info("Visitor Of Resident Id " + id + " Was Called");
                 if (Visitor == null)
                 {
                     return NotFound();
@@ -110,6 +110,8 @@ namespace VisitorAPI.Controllers
             }
 
         }
+
+
 
 
     }
