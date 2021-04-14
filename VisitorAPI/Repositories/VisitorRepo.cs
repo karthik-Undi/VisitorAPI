@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VisitorAPI.Models;
+using VisitorAPI.Models.ViewModels;
 
 namespace VisitorAPI.Repositories
 {
@@ -19,9 +21,29 @@ namespace VisitorAPI.Repositories
             _context = context;
         }
 
-        public IEnumerable<Visitors> GetAllVisitors()
+        public IEnumerable<VisitorDetails> GetAllVisitors()
         {
-            return _context.Visitors.ToList();
+            List<Visitors> data = _context.Visitors.Include(x => x.Resident).Include(emp => emp.Employee).ToList();
+
+            List<VisitorDetails> visitorDetailsList = new List<VisitorDetails>();
+            foreach (var ser in data)
+            {
+                VisitorDetails tempVisitordetails = new VisitorDetails()
+                {
+                    VisitorId = ser.VisitorId,
+                    ResidentHouseNo = ser.Resident.ResidentHouseNo,
+                    ResidentName = ser.Resident.ResidentName,
+                    VisitorName = ser.VisitorName,
+                    VisitorResaon = ser.VisitorResaon,
+                    VisitStartTime = ser.VisitStartTime,
+                    VisitEndTime = ser.VisitEndTime,
+                    ResidentId = ser.ResidentId,
+                    VisitorEntryStatus = ser.VisitorEntryStatus,
+                    ResidentMobileNo = ser.Resident.ResidentMobileNo
+                };
+                visitorDetailsList.Add(tempVisitordetails);
+            }
+            return visitorDetailsList;
         }
         public IEnumerable<Visitors> GetVisitorById(int id)
         {

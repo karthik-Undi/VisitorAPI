@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VisitorAPI.Models;
+using VisitorAPI.Models.ViewModels;
 
 namespace VisitorAPI.Repositories
 {
@@ -10,7 +11,7 @@ namespace VisitorAPI.Repositories
     {
         Task<Visitors> PostVisitor(Visitors item);
 
-        IEnumerable<Visitors> GetAllVisitors();
+        IEnumerable<VisitorDetails> GetAllVisitors();
         IEnumerable<Visitors> GetVisitorById(int id);
         Task<Visitors> UpdateVisitor(int id, Visitors item);
         Task<Visitors> DeleteVisitor(int id);

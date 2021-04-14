@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VisitorAPI.Models;
+using VisitorAPI.Models.ViewModels;
 using VisitorAPI.Repositories;
 
 namespace VisitorAPI.Controllers
@@ -21,7 +22,7 @@ namespace VisitorAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Visitors> GetAllVisitors()
+        public IEnumerable<VisitorDetails> GetAllVisitors()
         {
             _log4net.Info("Get All Visitors Was Called !!");
             return _context.GetAllVisitors();
